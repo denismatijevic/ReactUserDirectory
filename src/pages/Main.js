@@ -3,13 +3,7 @@ import React,{useState} from "react";
 const Main = () => {
   const[currentUsers, setCurrentUsers] = useState()
   function getData(){
-    // $.ajax({
-    //   url: 'https://randomuser.me/api/',
-    //   dataType: 'json',
-    //   success: function(data) {
-    //     console.log(data);
-    //   }
-    // });
+
     fetch('https://randomuser.me/api/?results=500')
       .then(res=>res.json())
       .then(res=>{
