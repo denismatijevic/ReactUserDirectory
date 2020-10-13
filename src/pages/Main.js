@@ -1,0 +1,37 @@
+import React,{useState} from "react";
+
+const Main = () => {
+  const[currentUsers, setCurrentUsers] = useState()
+  function getData(){
+    // $.ajax({
+    //   url: 'https://randomuser.me/api/',
+    //   dataType: 'json',
+    //   success: function(data) {
+    //     console.log(data);
+    //   }
+    // });
+    fetch('https://randomuser.me/api/?results=500')
+      .then(res=>res.json())
+      .then(res=>{
+        console.log(res.results)
+        setCurrentUsers(res.results)
+      })
+  }
+
+  return(
+    
+    <div>
+      <button onClick={getData}>Show all employees</button>
+      {(currentUsers) 
+        ? currentUsers.map((person, index)=>(
+          <div key={index}>
+            <h1>{person.name.title+" "+person.name.first+" "+person.name.last}</h1>
+          </div>
+        ))
+        : <h1>Nothing</h1>
+      }
+    </div>
+  )
+}
+
+export default Main;
