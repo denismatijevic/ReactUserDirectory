@@ -22,7 +22,7 @@ const Main = () => {
             <h1>{person.name.title+" "+person.name.first+" "+person.name.last}</h1>
           </div>
         ))
-        : <h1>Nothing</h1>
+        : <h1>Populate data</h1>
       }
     </div>
   )
