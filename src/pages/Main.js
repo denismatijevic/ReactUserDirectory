@@ -14,24 +14,26 @@ const Main = () => {
       })
   }
   const sortByAge = () => {
-    const sortedUsers = currentUsers.sort((a,b) => {
+      const sorting = [...currentUsers]
+      sorting.sort((a,b) => {
       const ageA = a.dob.date 
       const ageANum = parseInt(ageA.substring(0, 4) + ageA.substring(5,7) + ageA.substring(8,10))
       const ageB = b.dob.date 
       const ageBNum = parseInt(ageB.substring(0, 4) + ageB.substring(5,7) + ageB.substring(8,10))
       return ageANum - ageBNum
     })
-    setCurrentUsers(sortedUsers)
+    setCurrentUsers(sorting)
+    console.log(sortByAge)
   }
-  getData()
+  // getData()
   return(
-    
+    // "use effect look it up and use it"
     <div>
-      {/* <button onClick={getData}>Show all employees</button> */}
+      <button onClick={getData}>Show all employees</button>
       <button onClick={sortByAge}>Sort by age</button>
       {(currentUsers) 
         ? currentUsers.map((person, index)=>(
-          <div key={index}>
+          <div key={person.dob.date}>
           <User person={person} />
           </div>
           // <div key={index}>
