@@ -1,26 +1,49 @@
 import React,{useState} from "react";
+import User from "../components/User/User";
 
 const Main = () => {
   const[currentUsers, setCurrentUsers] = useState()
-  function getData(){
+  // const[sortedUsers, sortCurrentUsers] = useState()
 
-    fetch('https://randomuser.me/api/?results=500')
+  const getData = () => {
+    fetch('https://randomuser.me/api/?results=10')
       .then(res=>res.json())
       .then(res=>{
         console.log(res.results)
         setCurrentUsers(res.results)
       })
   }
-
+  const sortByAge = () => {
+    const sortedUsers = currentUsers.sort((a,b) => {
+      const ageA = a.dob.date 
+      const ageANum = parseInt(ageA.substring(0, 4) + ageA.substring(5,7) + ageA.substring(8,10))
+      const ageB = b.dob.date 
+      const ageBNum = parseInt(ageB.substring(0, 4) + ageB.substring(5,7) + ageB.substring(8,10))
+      return ageANum - ageBNum
+    })
+    setCurrentUsers(sortedUsers)
+  }
+  getData()
   return(
     
     <div>
-      <button onClick={getData}>Show all employees</button>
+      {/* <button onClick={getData}>Show all employees</button> */}
+      <button onClick={sortByAge}>Sort by age</button>
       {(currentUsers) 
         ? currentUsers.map((person, index)=>(
           <div key={index}>
-            <h1>{person.name.title+" "+person.name.first+" "+person.name.last}</h1>
+          <User person={person} />
           </div>
+          // <div key={index}>
+          //   {/* <div style={{ border:"2px solid black" }}>
+          //     <img src={person.picture.medium} />
+          //     <span> {person.name.title+" "+person.name.first+" "+person.name.last}</span>
+          //     <span> {new Date (person.dob.date).toLocaleDateString()+" "+person.dob.age}</span>
+          //     <span> {person.email}</span>
+          //     <span> {person.phone}</span>
+          //     <span> {person.location.city+", "+person.location.country}</span>
+          //   </div>
+          // </div> */}
         ))
         : <h1>Populate data</h1>
       }
