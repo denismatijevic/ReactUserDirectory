@@ -1,7 +1,8 @@
 import React,{useState} from "react";
+import classes from "./User.module.css"
 
 const User = (props) => (
-  <div style={{ border:"2px solid black" }}>
+  <div className={classes.RowContainer}>
     <img src={props.person.picture.medium} />
     <span> {props.person.name.title+" "+props.person.name.first+" "+props.person.name.last}</span>
     <span> {new Date (props.person.dob.date).toLocaleDateString()+" "+props.person.dob.age}</span>

@@ -3,7 +3,8 @@ import User from "../components/User/User";
 
 const Main = () => {
   const[currentUsers, setCurrentUsers] = useState()
-  // const[sortedUsers, sortCurrentUsers] = useState()
+  const[formText, setFormText] = useState()
+  const[filteredUsers, setFilteredUsers] = useState()
 
   const getData = () => {
     fetch('https://randomuser.me/api/?results=10')
@@ -25,14 +26,46 @@ const Main = () => {
     setCurrentUsers(sorting)
     console.log(sortByAge)
   }
-  // getData()
-  return(
+  
+  // const handleShowAll = () => {
+  //   setFilteredUsers()
+  // }
+
+  const handleChange = event => {
+    const {name, value} = event.target
+    console.log(value)
+    setFormText({
+      // ...formText,
+      [name]: value
+    })
+  }
+  const handleFormSubmit = event => {
+    event.preventDefault()
+    const filteredUsersArray = currentUsers.filter(user => {
+      return (user.name.first.toLowerCase()===formText.name.toLowerCase() ||
+      user.name.last.toLowerCase()===formText.name.toLowerCase())
+    })
+    setFilteredUsers(filteredUsersArray)
+  }
+  return( 
     // "use effect look it up and use it"
     <div>
-      <button onClick={getData}>Show all employees</button>
-      <button onClick={sortByAge}>Sort by age</button>
-      {(currentUsers) 
-        ? currentUsers.map((person, index)=>(
+      {!currentUsers && getData()}
+      <h1>Employee Data</h1>
+      <button className="inline-it" onClick={()=>setFilteredUsers()}>Show All</button>
+      <button className="inline-it" onClick={sortByAge}>Sort By Age</button>
+      <form className="inline-it" onSubmit={handleFormSubmit}>
+      <input name="name" type="name" id="name" onChange={handleChange}></input>
+      <button type="submit">Submit</button>
+      </form>
+      {filteredUsers
+        ?filteredUsers.map((person, index)=> (
+          <div key={person.dob.date}>
+          <User person={person} />
+          </div>
+        ))
+        :currentUsers
+        && currentUsers.map((person, index)=>(
           <div key={person.dob.date}>
           <User person={person} />
           </div>
@@ -47,7 +80,6 @@ const Main = () => {
           //   </div>
           // </div> */}
         ))
-        : <h1>Populate data</h1>
       }
     </div>
   )

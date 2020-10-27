@@ -1,0 +1,5 @@
+/* it can only be used if imported directly it is not global */
+.RowContainer {
+  border: 2px black solid;
+
+}
