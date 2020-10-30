@@ -8,7 +8,7 @@ function App() {
     <Router>
       <div>
         <Switch>
-          <Route exact path="/" component={Main} />
+          <Route exact path="/ReactUserDirectory" component={Main} />
         </Switch>
       </div>
     </Router>
