@@ -7,7 +7,7 @@ const Main = () => {
   const[filteredUsers, setFilteredUsers] = useState()
 
   const getData = () => {
-    fetch('https://randomuser.me/api/?results=10')
+    fetch('https://randomuser.me/api/?results=100')
       .then(res=>res.json())
       .then(res=>{
         console.log(res.results)
@@ -27,10 +27,6 @@ const Main = () => {
     console.log(sortByAge)
   }
   
-  // const handleShowAll = () => {
-  //   setFilteredUsers()
-  // }
-
   const handleChange = event => {
     const {name, value} = event.target
     console.log(value)
@@ -69,16 +65,6 @@ const Main = () => {
           <div key={person.dob.date}>
           <User person={person} />
           </div>
-          // <div key={index}>
-          //   {/* <div style={{ border:"2px solid black" }}>
-          //     <img src={person.picture.medium} />
-          //     <span> {person.name.title+" "+person.name.first+" "+person.name.last}</span>
-          //     <span> {new Date (person.dob.date).toLocaleDateString()+" "+person.dob.age}</span>
-          //     <span> {person.email}</span>
-          //     <span> {person.phone}</span>
-          //     <span> {person.location.city+", "+person.location.country}</span>
-          //   </div>
-          // </div> */}
         ))
       }
     </div>
