@@ -4,28 +4,23 @@
 
 * [Process](#Process)
 * [Issues](#Issues)
-* [Video](#Video)
 * [Link](#Link)
 * [Screenshot](#Screenshot)
 
 # Process
-
+* Created an app where a user is able to sort the directory by age or by name.
 
 
 # Issues
-
-
-
-# Future-Plans
-
+* This was a tough build, kept running into odd errors but i prevailed.
 
 
 # Link 
 
-[Link To App]()
+[Link To App](https://denismatijevic.github.io/ReactUserDirectory/?)
 
 # Screenshot
 
-![]()
+![App Screenshot](public/screenshot.png)
 
 ![]()
