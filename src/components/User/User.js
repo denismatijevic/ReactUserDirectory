@@ -1,9 +1,9 @@
-import React,{useState} from "react";
+import React from "react";
 import classes from "./User.module.css"
 
 const User = (props) => (
   <div className={classes.RowContainer}>
-    <img src={props.person.picture.medium} />
+    <img src={props.person.picture.medium} alt="profile" />
     <span> {props.person.name.title+" "+props.person.name.first+" "+props.person.name.last}</span>
     <span> {new Date (props.person.dob.date).toLocaleDateString()+" "+props.person.dob.age}</span>
     <span> {props.person.email}</span>
